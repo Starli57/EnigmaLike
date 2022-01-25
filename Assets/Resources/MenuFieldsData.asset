@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 408d9f0efda03bb42b49eef25301fe9c, type: 3}
+  m_Name: MenuFieldsData
+  m_EditorClassIdentifier: 
+  _menuTypes:
+  - MenuType: 0
+    Fields:
+    - Next: 2
+      FieldName: Decrypt message
+      IsDev: 0
+    - Next: 3
+      FieldName: Open instructions
+      IsDev: 0
+    - Next: 3
+      FieldName: Exit
+      IsDev: 0
+    - Next: 1
+      FieldName: '[Dev] Encrypt message'
+      IsDev: 1
+  - MenuType: 1
+    Fields:
+    - Next: 4
+      FieldName: Save
+      IsDev: 0
+    - Next: 0
+      FieldName: Back
+      IsDev: 0
+  - MenuType: 2
+    Fields:
+    - Next: 4
+      FieldName: Save
+      IsDev: 0
+    - Next: 0
+      FieldName: Back
+      IsDev: 0
+  - MenuType: 3
+    Fields: []
+  - MenuType: 4
+    Fields: []
+  - MenuType: 5
+    Fields: []
+  - MenuType: 6
+    Fields: []
