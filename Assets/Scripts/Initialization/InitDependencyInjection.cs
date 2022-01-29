@@ -14,6 +14,7 @@ public class InitDependencyInjection : MonoInstaller
         Container.Bind<Printer>().FromInstance(_printer);
         Container.Bind<RotorsBox>().FromInstance(_rotorsBox);
         Container.Bind<PapersList>().FromInstance(_papersList);
+        Container.Bind<Stamp>().FromInstance(_stamp);
 
         Container.Bind<AudioManager>().FromInstance(_audioManager);
     }
@@ -24,6 +25,7 @@ public class InitDependencyInjection : MonoInstaller
     [SerializeField] private Printer _printer;
     [SerializeField] private RotorsBox _rotorsBox;
     [SerializeField] private PapersList _papersList;
+    [SerializeField] private Stamp _stamp;
 
     [Space]
     [SerializeField] private AudioManager _audioManager;

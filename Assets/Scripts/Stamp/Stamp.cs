@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,8 @@ using Zenject;
 
 public class Stamp : MonoBehaviour
 {
+    public Action<Paper> OnStamped;
+
     [SerializeField] private float _groundPosition = 0;
     [SerializeField] private float _flyPosition = 2;
 
@@ -40,7 +43,10 @@ public class Stamp : MonoBehaviour
     private void OnMouseUp()
     {
         _targetPosition.y = _groundPosition;
-        _papersList.GetTopPaper().SetStamp(_targetPosition);
+
+        var topPaper = _papersList.GetTopPaper();
+        topPaper.SetStamp(_targetPosition);
+        OnStamped?.Invoke(topPaper);
 
         StartCoroutine(BackToDefaultPosition());
     }
