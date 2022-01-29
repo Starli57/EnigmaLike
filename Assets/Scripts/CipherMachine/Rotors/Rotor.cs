@@ -3,9 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rotor : MonoBehaviour
+public class Rotor : TouchableWheel
 {
-
     public Action<int> onRotorFinalized;
     public int index { get; set; }
     public int currentValue { get; private set; } = 0;
@@ -30,6 +29,9 @@ public class Rotor : MonoBehaviour
 
     public void SetValue(int val)
     {
+        if (val >= connectorsCount) val = 0;
+        if (val < 0) val = connectorsCount - 1;
+
         currentValue = val;
     }
 
@@ -51,6 +53,12 @@ public class Rotor : MonoBehaviour
         Shake(values);
 
         _connectors = new List<int>(values);
+    }
+
+    protected override void OnValueChanged(int step)
+    {
+        base.OnValueChanged(step);
+        SetValue(currentValue + step);
     }
 
     [SerializeField] private List<float> _angleByValue;

@@ -1,11 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class CipherMachine : MonoBehaviour
 {
     [SerializeField] private List<MachineButton> _keyBoardBtns;
-    [SerializeField] private RotorsBox _rotorsBox;
+    
+    private RotorsBox _rotorsBox;    
+    private Printer _printer;
+
+    private AudioManager _audioManager;
 
     private char[] _alphabet = new char[26] {
          'A','B','C','D','E','F','G',
@@ -13,6 +18,14 @@ public class CipherMachine : MonoBehaviour
          'O','P','Q','R','S','T','U',
          'V','W','X','Y','Z'
     };
+
+    [Inject]
+    private void Construct(Printer printer, RotorsBox rotorsBox, AudioManager audioManager)
+    {
+        _printer = printer;
+        _rotorsBox = rotorsBox;
+        _audioManager = audioManager;
+    }
 
     private void OnEnable()
     {
@@ -33,10 +46,13 @@ public class CipherMachine : MonoBehaviour
 
         machineButton.Animate();
         char ciphered = Cipher(machineButton.keyCode);
+
         Debug.Log("Origin: " + machineButton.keyCode.ToString() + " Ciphered: " + ciphered);
-        //print
-        //move printer carret
-        _rotorsBox.Rotate();        
+
+        _printer.Print(ciphered);
+        _rotorsBox.Rotate();
+
+        _audioManager.PlayTypeSound();
     }
 
     private char Cipher(KeyCode keycode)

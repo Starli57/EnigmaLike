@@ -17,6 +17,11 @@ public class MachineButton : MonoBehaviour
             _animations.PhysicalMachineButtonPressTime));
     }
 
+    public void OnPressed()
+    {
+        onPressed?.Invoke(this);
+    }
+
     [SerializeField] private KeyCode _keycode;
 
     private AnimationCurvesData _animations { get; set; }
@@ -30,9 +35,12 @@ public class MachineButton : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(_keycode))
-        {
-            onPressed?.Invoke(this);
-        }    
+            OnPressed();
+    }
+
+    private void OnMouseDown()
+    {
+        OnPressed();
     }
 
     private WaitForEndOfFrame _frameWaiter = new WaitForEndOfFrame();
